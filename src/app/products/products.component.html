@@ -1,3 +1,7 @@
-<p>
-  products works!
-</p>
+<li *ngFor="let product of products; index as i;">
+  <div class="square">
+    <h2>product : {{ product.name }}</h2>
+    <h3>price : {{ product.price }}</h3>
+    <h3>category : {{ product.category }}</h3>
+  </div>  
+</li>
