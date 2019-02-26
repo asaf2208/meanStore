@@ -6,8 +6,8 @@ const UserModel = new Schema({
     password:{type:String,required:true},
     email:{type:String,required:true},
     address:{type:String},
-    createddate:{type:Date},
-    currentCart:{type:[mongoose.Schema.Types.ObjectId],ref:'Product'},
+    fullname:{type:String,required:true},
+    currentcart:{type:[mongoose.Schema.Types.ObjectId],ref:'Product'},
     historyoforder:{type:[mongoose.Schema.Types.ObjectId],ref:'Order'},
     isAdmin:{type: Boolean}
 })
