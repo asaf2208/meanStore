@@ -5,17 +5,19 @@ const mongoose = require('mongoose');
 
 const ProductRoutes = require('./api/routes/products');
 const BranchRoutes = require('./api/routes/branches');
-const OrderRoutes = require('./api/routes/orders')
+const OrderRoutes = require('./api/routes/orders');
+const UserRoutes = require('./api/routes/users');
+
 const cors = require('cors');// ********
 //const express = require('./api/routes/express');// ***
 
 app.use(cors());
 app.options('*', cors());
 
-// app.use(cors({credentials: true, origin: true})); // ***
+app.use(cors({credentials: true, origin: true})); // ***
 
 mongoose.connect("mongodb://localhost:27017/AppProject",{ useNewUrlParser: true }).then(() => {
-    console.log('DB connected');
+     console.log('DB connected');
 });
 mongoose.Promise = global.Promise;
 
@@ -26,11 +28,12 @@ app.use(bodyParser.json());
 app.use('/products',ProductRoutes );
 app.use('/branches',BranchRoutes );
 app.use('/orders',OrderRoutes );
+app.use('/users',UserRoutes );
 
 app.use((req,res,next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE , PATCH');
 
     if ('OPTIONS' == req.method) {
         res.sendStatus(200);
