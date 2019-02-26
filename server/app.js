@@ -14,32 +14,14 @@ app.options('*', cors());
 
 // app.use(cors({credentials: true, origin: true})); // ***
 
-mongoose.connect("mongodb://localhost:27017/AppProject");
-
+mongoose.connect("mongodb://localhost:27017/AppProject",{ useNewUrlParser: true }).then(() => {
+    console.log('DB connected');
+});
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-//app.use((req,res,next) => {
-//    res.header('Access-Contral-Allow-Origin','*');
-//    res.header('Access-Contral-Allow-Headers','Origin');
-//    if (req.method == 'OPTIONS'){
-//        res.header('Access-Contral-Allow-Methods','PUT,POST,PATCH,DELETE,GET');
-//        return res.status(200).json({});
-//    }
-//    next();
-//});
-
-// app.configure(function () {app.use(allowCrossDomain);}) // ****
-
-// var allowCrossDomain = function(req, res, next) {
-//     res.header('Access-Control-Allow-Origin', 'example.com');
-//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-//     res.header('Access-Control-Allow-Headers', 'Content-Type');
-
-//     next();
-// } // *****
 
 app.use('/products',ProductRoutes );
 app.use('/branches',BranchRoutes );

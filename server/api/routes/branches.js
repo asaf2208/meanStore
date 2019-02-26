@@ -12,12 +12,7 @@ router.get('/',(req,res,next) => {
             branches : docs.map(doc=>{
                 return{
                     name: doc.name,
-                    address : doc.address,
-                    _id : doc.id,
-                    request:{
-                        type:'GET',
-                        url:'http://localhost:3000/branches/'+ doc._id
-                    }
+                    address : doc.address
                 }
             })
         };
@@ -43,10 +38,6 @@ router.post('/',(req,res,next) => {
                 name: result.name,
                 address : result.address,
                 _id : result.id,
-                request:{
-                    type:'GET',
-                    url:'http://localhost:3000/branches/'+ result._id
-                }
             }
     });
 })
@@ -85,13 +76,9 @@ router.patch('/:branchID',(req,res,next) => {
         updateOpt[ops.propName] = ops.value;
     }
     Branch.update({_id:id},{$set : updateOpt})
-        .select('name address _id').exec().then(result=>{
+        .exec().then(result=>{
         res.status(200).json({
-            message:'Branch updated',
-            request: {
-                type:'GET',
-                url: 'http;//localhost:3000/branches' +id
-            }
+            message:'Branch updated'
         });
     })
         .catch(err=> {
@@ -106,12 +93,7 @@ router.delete('/:branchID',(req,res,next) => {
     Branch.remove({_id:id})
         .exec().then(result=>{
         res.status(200).json({
-            message:'branch deleted',
-            request: {
-                type:'POST',
-                url: 'http;//localhost:3000/branches',
-                body:{name : 'String',price:'Number'}
-            }
+            message:'branch deleted'
         });
     })
         .catch(err=> {
