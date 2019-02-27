@@ -1,1 +1,6 @@
+<div style="margin-left: 1rem;">
+        <input type="text" [(ngModel)]="searchTerm">
+        <button type="button" class="btn btn-primary" (click)="search()" style="margin-left: 1rem;">Search</button>
+</div>
+<br>
 <app-branch *ngFor='let branch of branches;' [name]='branch.name' [address]='branch.address'></app-branch>

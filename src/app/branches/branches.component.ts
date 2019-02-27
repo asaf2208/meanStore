@@ -11,11 +11,19 @@ export class BranchesComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   branches = [];
+  searchTerm: string;
 
   ngOnInit() {
     this.http.get<any>('http://localhost:3000/branches')
       .subscribe((data) => {
         this.branches = data['branches'];
+      });
+  }
+
+  search() {
+    this.http.get<any>('http://localhost:3000/branches/search/' + this.searchTerm)
+      .subscribe((data) => {
+        this.branches = data['products'];
       });
   }
 
