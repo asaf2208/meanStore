@@ -42,17 +42,20 @@ router.post('/login', (req, res) => {
         if (err) {
             console.error(err);
         } else if (user) {
-            const { fullname, email, isAdmin} = user;
+            const { fullname, email, isAdmin, _id} = user;
             console.log(isAdmin);
             console.log(user);
             res.json(({
+                "errorCode": 0,
+                "_id": _id,
+                "fullname":fullname,
                 "fullname":fullname,
                 "email":email,
                 "username":username,
                 "isAdmin": isAdmin
             }));
         } else {
-            res.json(('wrong input'));
+            res.json(('errorCode: 11'));
         }
     });
 });
