@@ -8,8 +8,8 @@ export class Globals {
     constructor() {
     };
 
-    setUser(id : string, userName: string, fullName : string, isAdmin: boolean) {
-        this.user = new User(id,userName,fullName,isAdmin);
+    setUser(id : string, userName: string, fullName : string, email: string,isAdmin: boolean) {
+        this.user = new User(id,userName,fullName,email,isAdmin);
     }
 
     getUser() {
@@ -22,11 +22,13 @@ class User {
     username: string;
     fullName: string;
     isAdmin: boolean;
+    email: string;
 
-    constructor(id : string, userName: string, fullName : string, isAdmin: boolean) {
+    constructor(id : string, userName: string, fullName : string, email: string,isAdmin: boolean) {
         this.id = id;
         this.username = userName;
         this.fullName = fullName;
+        this.email = email;
         this.isAdmin = isAdmin;
     }
 
