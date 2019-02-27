@@ -15,6 +15,10 @@ export class Globals {
     getUser() {
         return this.user;
     }
+
+    logout() {
+        this.user = null;
+    }
 }
 
 class User {
