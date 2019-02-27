@@ -1,3 +1,4 @@
+import { Globals } from './globals';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -60,7 +61,7 @@ import { SignupComponent } from './signup/signup.component';
       }
     ])
   ],
-  providers: [],
+  providers: [Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

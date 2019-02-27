@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Globals } from '../globals';
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +14,7 @@ export class SignupComponent implements OnInit {
   loginForm: FormGroup;
 
 
-  constructor(fb: FormBuilder,private http: HttpClient,     private router: Router,  private route: ActivatedRoute) {
+  constructor(fb: FormBuilder,private http: HttpClient, private router: Router,  private route: ActivatedRoute, private globals: Globals) {
     this.loginForm = fb.group({
       email: ['',[Validators.required,Validators.email]],
       username: ['',Validators.required],
@@ -42,10 +43,6 @@ export class SignupComponent implements OnInit {
   };
 
   onSubmit(evt) {
-    console.log(1);
-
-    console.log(this.password.value);
-
       this.http.post<any>('http://localhost:3000/users/adduser',
       {
         "firstname": this.username.value,
@@ -56,6 +53,7 @@ export class SignupComponent implements OnInit {
       }).subscribe((data) => {
           console.log(data);
           if(data.message === "Created user successfully") {
+            this.globals.setUser(data.createdUser._id,data.createdUser.username,data.createdUser.fullname,data.createdUser.isAdmin);
             this.router.navigateByUrl("/products");
           }
       });
