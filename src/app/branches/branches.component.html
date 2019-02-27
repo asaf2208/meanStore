@@ -3,4 +3,4 @@
         <button type="button" class="btn btn-primary" (click)="search()" style="margin-left: 1rem;">Search</button>
 </div>
 <br>
-<app-branch *ngFor='let branch of branches;' [name]='branch.name' [address]='branch.address'></app-branch>
+<app-branch *ngFor='let branch of branches;' [name]='branch.name' [city]='branch.city' [street]='branch.street'></app-branch>
