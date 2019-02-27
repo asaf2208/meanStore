@@ -10,7 +10,8 @@ export class BranchComponent implements OnInit {
   constructor() { }
 
   @Input() name : string;
-  @Input() address : string;
+  @Input() street : string;
+  @Input() city : string;
 
   ngOnInit() {
   }

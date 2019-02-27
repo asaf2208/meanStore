@@ -22,13 +22,14 @@ router.get('/:name',(req,res,next) => {
 
 router.get('/',(req,res,next) => {
     Branch.find()
-        .select('name address _id').exec().then(docs=>{
+        .select('name street city _id').exec().then(docs=>{
         const response = {
             count : docs.length,
             branches : docs.map(doc=>{
                 return{
                     name: doc.name,
-                    address : doc.address
+                    street : doc.street,
+                    city : doc.city,
                 }
             })
         };
@@ -43,7 +44,8 @@ router.get('/',(req,res,next) => {
 router.post('/',(req,res,next) => {
     const branch = new Branch({
         name:req.body.name,
-        address: req.body.address
+        street: req.body.street,
+        city: req.body.city,
     });
     branch.save().then(result =>{
         console.log(result);
@@ -51,7 +53,8 @@ router.post('/',(req,res,next) => {
             message:'Created branch successfully',
             createdBranch: {
                 name: result.name,
-                address : result.address,
+                street : result.street,
+                city : result.city,
                 _id : result.id,
             }
     });
@@ -64,7 +67,7 @@ router.post('/',(req,res,next) => {
 
 router.get('/:branchID',(req,res,next) => {
     const id = req.params.branchID;
-    Product.findById(id).select('name address _id').exec().then(doc=>{
+    Product.findById(id).select('name street city _id').exec().then(doc=>{
         console.log("From DB",doc);
         if(doc) {
             res.status(200).json({
