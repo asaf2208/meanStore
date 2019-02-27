@@ -18,6 +18,8 @@ app.use(cors({credentials: true, origin: true})); // ***
 
 mongoose.connect("mongodb://localhost:27017/AppProject",{ useNewUrlParser: true }).then(() => {
      console.log('DB connected');
+}).catch(function(error) {
+    console.error(error);
 });
 mongoose.Promise = global.Promise;
 
