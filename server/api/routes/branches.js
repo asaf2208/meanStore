@@ -10,7 +10,7 @@ router.get('/:name',(req,res,next) => {
         name:req.params.name
     }).then(foundbranch=>{
         res.status(200).json({
-            Branch:foundbranch
+            branchs:foundbranch
         });
     })
     .catch(err=> {
@@ -87,7 +87,7 @@ router.post('/',(req,res,next) => {
                 name: result.name,
                 city : result.city,
                 street: result.street,
-                _id : result.id
+                _id : result.id,
             }
     });
 })

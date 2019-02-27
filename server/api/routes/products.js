@@ -10,7 +10,7 @@ router.get('/:name',(req,res,next) => {
         name:req.params.name
     }).then(foundproduct=>{
         res.status(200).json({
-            product:foundproduct
+            products:foundproduct
         });
     })
     .catch(err=> {

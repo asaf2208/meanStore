@@ -22,7 +22,7 @@ export class ProductsComponent implements OnInit {
   }
 
   search() {
-    this.http.get<any>('http://localhost:3000/products/search/' + this.searchTerm)
+    this.http.get<any>('http://localhost:3000/products/' + this.searchTerm)
       .subscribe((data) => {
         this.products = data['products'];
       });
