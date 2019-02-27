@@ -22,13 +22,14 @@ router.get('/:name',(req,res,next) => {
 
 router.get('/',(req,res,next) => {
     Branch.find()
-        .select('name address _id').exec().then(docs=>{
+        .select('name city street _id').exec().then(docs=>{
         const response = {
             count : docs.length,
             branches : docs.map(doc=>{
                 return{
                     name: doc.name,
-                    address : doc.address
+                    city : doc.city,
+                    street: doc.street
                 }
             })
         };
@@ -75,7 +76,8 @@ router.get('/search', async(req, res) => {
 router.post('/',(req,res,next) => {
     const branch = new Branch({
         name:req.body.name,
-        address: req.body.address
+        city: req.body.city,
+        street: req.body.street
     });
     branch.save().then(result =>{
         console.log(result);
@@ -83,8 +85,9 @@ router.post('/',(req,res,next) => {
             message:'Created branch successfully',
             createdBranch: {
                 name: result.name,
-                address : result.address,
-                _id : result.id,
+                city : result.city,
+                street: result.street,
+                _id : result.id
             }
     });
 })

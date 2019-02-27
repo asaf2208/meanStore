@@ -21,13 +21,14 @@ router.get('/:name',(req,res,next) => {
 
 router.get('/',(req,res,next) => {
     Product.find()
-        .select('name price _id').exec().then(docs=>{
+        .select('name price category _id').exec().then(docs=>{
         const response = {
             count : docs.length,
             products : docs.map(doc=>{
                 return{
                     name: doc.name,
                     price : doc.price,
+                    category: doc.category,
                     _id : doc.id,
                     url:{
                         request:{
@@ -91,6 +92,7 @@ router.post('/',(req,res,next) => {
             createdProduct: {
                 name: result.name,
                 price : result.price,
+                category: result.category,
                 _id : result.id,
                 request: {
                     type: 'GET',
@@ -160,7 +162,7 @@ router.delete('/:productID',(req,res,next) => {
             request: {
                 type:'POST',
                 url: 'http;//localhost:3000/products',
-                body:{name : 'String',price:'Number'}
+                body:{name : 'String',price:'Number', category: 'String'}
             }
         });
     })

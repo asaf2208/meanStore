@@ -23,7 +23,7 @@ export class BranchesComponent implements OnInit {
   search() {
     this.http.get<any>('http://localhost:3000/branches/search/' + this.searchTerm)
       .subscribe((data) => {
-        this.branches = data['products'];
+        this.branches = data['branches'];
       });
   }
 
