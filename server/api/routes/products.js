@@ -5,6 +5,20 @@ const mongoose = require('mongoose');
 
 const Product = require('../models/product');
 
+router.get('/:name',(req,res,next) => {
+    Product.find({
+        name:{req.params.name}
+    }).then(foundproduct=>{
+        res.status(200).json({
+            product:foundproduct
+        });
+    })
+    .catch(err=> {
+        console.log(err);
+        res.status(500).json({error:err});
+    });
+});
+
 router.get('/',(req,res,next) => {
     Product.find()
         .select('name price _id').exec().then(docs=>{
@@ -32,21 +46,7 @@ router.get('/',(req,res,next) => {
         });
 });
 
-router.get('/search',(req,res,next) => {
-    var q = req.query.q;
-    Product.find({
-        name: {
-            $regex: new RegExp(q)
-        }
-    },{
-        _id: 0,
-        _v:0
-    })
-    .catch(err=> {
-        console.log(err);
-        res.status(500).json({error:err});
-    });
-});
+
 
 
 router.post('/',(req,res,next) => {
@@ -75,7 +75,7 @@ router.post('/',(req,res,next) => {
         });
 });
 
-
+/*
 router.get('/:productID',(req,res,next) => {
     const id = req.params.productID;
     Product.findById(id).select('name price _id').exec().then(doc=>{
@@ -97,8 +97,7 @@ router.get('/:productID',(req,res,next) => {
             res.status(500).json({error:err});
         });
 });
-
-
+*/
 router.patch('/:productID',(req,res,next) => {
     const id = req.params.productID;
     const updateOpt = {};

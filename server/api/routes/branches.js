@@ -4,6 +4,22 @@ const router = express.Router();
 
 const Branch = require('../models/branch');
 
+
+router.get('/:name',(req,res,next) => {
+    Branch.find({
+        name:{req.params.name}
+    }).then(foundbranch=>{
+        res.status(200).json({
+            Branch:foundbranch
+        });
+    })
+    .catch(err=> {
+        console.log(err);
+        res.status(500).json({error:err});
+    });
+});
+
+
 router.get('/',(req,res,next) => {
     Branch.find()
         .select('name address _id').exec().then(docs=>{
@@ -22,22 +38,6 @@ router.get('/',(req,res,next) => {
             console.log(err);
             res.status(500).json({error:err});
         });
-});
-
-router.get('/search',(req,res,next) => {
-    var q = req.query.q;
-    Branch.find({
-        name: {
-            $regex: new RegExp(q)
-        }
-    },{
-        _id: 0,
-        _v:0
-    })
-    .catch(err=> {
-        console.log(err);
-        res.status(500).json({error:err});
-    });
 });
 
 router.post('/',(req,res,next) => {
