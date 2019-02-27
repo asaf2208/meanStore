@@ -82,6 +82,7 @@ router.get('/:productID',(req,res,next) => {
         });
 });
 
+
 router.patch('/:productID',(req,res,next) => {
     const id = req.params.productID;
     const updateOpt = {};
@@ -123,6 +124,15 @@ router.delete('/:productID',(req,res,next) => {
             res.status(500).json({error:err});
         });
 });
+
+router.get('/search', async(req, res) => {
+    Product.find({})
+    const { minval, maxval, category } = req.query
+    const products = await Product.find({type: category, price: {$gte: parseInt(minval), $lte: parseInt(maxval)}})
+    return products !== [] 
+    ? res.json(okResult(products)) 
+    : res.json(errResult('no products'))
+  })
 
 
 module.exports = router;

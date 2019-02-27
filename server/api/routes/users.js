@@ -9,6 +9,7 @@ var jsonParser = bodyParser.json();
 app.use(bodyParser.json());
 
 const User = require('../models/user');
+const Order = require('../models/order');
 
 router.post('/adduser',jsonParser,(req,res,next) => {
     const user = new User({
@@ -95,6 +96,5 @@ router.delete('/:userid',(req,res,next) => {
             res.status(500).json({error:err});
         });
 });
-
 
 module.exports = router;
