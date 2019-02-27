@@ -12,7 +12,7 @@
       <a routerLink="/about">About</a> |
       <!--ngIf-->
       <a routerLink="#">Analytics</a>
-      <div *ngIf="globals.user" class="name">Hello {{ globals.user.fullName | titlecase}}</div>
+      <div *ngIf="globals.user" class="name">Hello {{ globals.user.fullName | titlecase}} | <a style="cursor: pointer" (click)="logout()">Logout</a></div>
     </div>
   </div>
 </nav>
