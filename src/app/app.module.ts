@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { BranchesComponent } from './branches/branches.component';
 import { FooterComponent } from './footer/footer.component';
-import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { LoginComponent } from './login/login.component';
     AboutComponent,
     BranchesComponent,
     FooterComponent,
-    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,8 +48,8 @@ import { LoginComponent } from './login/login.component';
         component: AboutComponent
       },
       { 
-        path: 'login',
-        component: LoginComponent
+        path: 'signup',
+        component: SignupComponent
       },
       { 
         path: '**',
