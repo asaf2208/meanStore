@@ -25,12 +25,10 @@ router.post('/adduser',jsonParser,(req,res,next) => {
         res.status(201).json({
             message:'Created user successfully',
             createdUser: result
-        })
-            .catch(err=> {
-                console.log(err);
-                res.status(500).json({error:err});
-            });
-
+        });
+    }).catch(err=> {
+        console.log(err);
+        res.status(500).json({error:err});
     });
 });
 
