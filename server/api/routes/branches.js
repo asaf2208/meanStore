@@ -24,6 +24,21 @@ router.get('/',(req,res,next) => {
         });
 });
 
+router.get('/search',(req,res,next) => {
+    var q = req.query.q;
+    Branch.find({
+        name: {
+            $regex: new RegExp(q)
+        }
+    },{
+        _id: 0,
+        _v:0
+    })
+    .catch(err=> {
+        console.log(err);
+        res.status(500).json({error:err});
+    });
+});
 
 router.post('/',(req,res,next) => {
     const branch = new Branch({
