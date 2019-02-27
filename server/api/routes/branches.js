@@ -7,7 +7,7 @@ const Branch = require('../models/branch');
 
 router.get('/:name',(req,res,next) => {
     Branch.find({
-        name:{req.params.name}
+        name:req.params.name
     }).then(foundbranch=>{
         res.status(200).json({
             Branch:foundbranch
