@@ -40,6 +40,38 @@ router.get('/',(req,res,next) => {
         });
 });
 
+
+router.get('/search', async(req, res) => {
+    const branchstreet = req.query.street;
+    const branchcity = req.query.city;
+    const branchname = req.query.name;
+
+    let fetchedProducts;
+    let query = {};
+
+    if(branchname !=='')query["name"] = branchname;
+    if(branchcity !=='')query["city"] = branchcity;
+    if(branchstreet !=='')query["street"] = branchstreet;
+
+    const branchQuery = Branch.find(query);
+
+    branchQuery
+    .then(branchResult=>{
+        fetchedbranches = branchResult;
+        return Branch.find(query).countDocuments();
+    }).then(count =>{
+        res.status(200).json({
+            message:"Branches fetched successfuly",
+            Branches:fetchedbranches,
+            totalprducts:count
+        });
+    }).catch(err=> {
+        console.log(err);
+        res.status(500).json({error:err});
+    });
+  });
+  
+
 router.post('/',(req,res,next) => {
     const branch = new Branch({
         name:req.body.name,
@@ -61,7 +93,7 @@ router.post('/',(req,res,next) => {
         res.status(500).json({error:err});
     });
 });
-
+/*
 router.get('/:branchID',(req,res,next) => {
     const id = req.params.branchID;
     Product.findById(id).select('name address _id').exec().then(doc=>{
@@ -83,7 +115,7 @@ router.get('/:branchID',(req,res,next) => {
             res.status(500).json({error:err});
         });
 });
-
+*/
 router.patch('/:branchID',(req,res,next) => {
     const id = req.params.branchID;
     const updateOpt = {};

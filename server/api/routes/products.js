@@ -46,14 +46,44 @@ router.get('/',(req,res,next) => {
         });
 });
 
+router.get('/search', async(req, res) => {
+    const productprice = req.query.price;
+    const productcategory = req.query.category;
+    const productname = req.query.name;
 
+    let fetchedProducts;
+    let query = {};
+
+    if(productname !=='')query["name"] = productname;
+    if(productprice !=='')query["price"] = productprice;
+    if(productcategory !=='')query["category"] = productcategory;
+
+    const productQuery = Product.find(query);
+
+    productQuery
+    .then(prodctResult=>{
+        fetchedProducts = prodctResult;
+        return Product.find(query).countDocuments();
+    }).then(count =>{
+        res.status(200).json({
+            message:"products fetched successfuly",
+            products:fetchedProducts,
+            totalprducts:count
+        });
+    }).catch(err=> {
+        console.log(err);
+        res.status(500).json({error:err});
+    });
+  });
+  
 
 
 router.post('/',(req,res,next) => {
     const product = new Product({
         _id : new mongoose.Types.ObjectId(),
         name: req.body.name,
-        price:req.body.price
+        price:req.body.price,
+        category:req.body.category
     });
     product.save().then(result =>{
         res.status(201).json({
@@ -140,14 +170,6 @@ router.delete('/:productID',(req,res,next) => {
         });
 });
 
-router.get('/search', async(req, res) => {
-    Product.find({})
-    const { minval, maxval, category } = req.query
-    const products = await Product.find({type: category, price: {$gte: parseInt(minval), $lte: parseInt(maxval)}})
-    return products !== [] 
-    ? res.json(okResult(products)) 
-    : res.json(errResult('no products'))
-  })
 
 
 module.exports = router;
