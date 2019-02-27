@@ -24,7 +24,7 @@ import { SignupComponent } from './signup/signup.component';
     AboutComponent,
     BranchesComponent,
     FooterComponent,
-    ProductComponent
+    ProductComponent,
     FooterComponent,
     SignupComponent,
   ],
