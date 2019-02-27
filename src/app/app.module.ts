@@ -16,6 +16,7 @@ import { ProductComponent } from './product/product.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { BranchComponent } from './branch/branch.component';
+import { DisplayUsdPipe } from './display-usd.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { BranchComponent } from './branch/branch.component';
     SignupComponent,
     LoginComponent,
     BranchComponent,
+    DisplayUsdPipe,
   ],
   imports: [
     BrowserModule,

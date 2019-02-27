@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class ProductsComponent implements OnInit {
 
   products = [];
+  searchTerm: string;
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
     // const product1 = {
@@ -46,6 +47,13 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.http.get<any>('http://localhost:3000/products')
+      .subscribe((data) => {
+        this.products = data['products'];
+      });
+  }
+
+  search() {
+    this.http.get<any>('http://localhost:3000/products/search/' + this.searchTerm)
       .subscribe((data) => {
         this.products = data['products'];
       });
