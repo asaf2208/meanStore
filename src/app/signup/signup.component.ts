@@ -51,7 +51,8 @@ export class SignupComponent implements OnInit {
         "firstname": this.username.value,
         "password": this.password.value,
         "fullname": this.fullname.value,
-        "email": this.email.value
+        "email": this.email.value,
+        "isAdmin": false
       }).subscribe((data) => {
           console.log(data);
           if(data.message === "Created user successfully") {
