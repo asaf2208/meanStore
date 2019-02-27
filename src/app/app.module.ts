@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { BranchesComponent } from './branches/branches.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProductComponent } from './product/product.component';
 import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
@@ -22,6 +23,8 @@ import { SignupComponent } from './signup/signup.component';
     HomeComponent,
     AboutComponent,
     BranchesComponent,
+    FooterComponent,
+    ProductComponent,
     FooterComponent,
     SignupComponent,
   ],
