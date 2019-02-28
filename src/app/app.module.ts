@@ -1,3 +1,4 @@
+import { AddProductComponent } from './products/add-product/add-product.component';
 import { Globals } from './globals';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -22,6 +23,7 @@ import { AgmCoreModule } from '@agm/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCredentials: false} };
 
@@ -42,9 +44,11 @@ const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCre
     LoginComponent,
     BranchComponent,
     DisplayUsdPipe,
-    GooglemapsComponent
+    GooglemapsComponent,
+    AddProductComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     SocketIoModule.forRoot(config),
     AgmCoreModule.forRoot({
       apiKey:"AIzaSyAAXZyutzornngMjFPiS7c8F5J0W8hxjX4"
@@ -86,6 +90,7 @@ const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCre
       }
     ])
   ],
+  entryComponents: [AddProductComponent],
   providers: [Globals],
   bootstrap: [AppComponent]
 })

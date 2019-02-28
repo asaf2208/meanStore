@@ -8,8 +8,6 @@ import { Socket } from 'ngx-socket-io';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  check : any;
-
   constructor(private globals: Globals,private socket: Socket) {
     if(sessionStorage.getItem('user') !== null) {
       const user = JSON.parse(sessionStorage.getItem('user'));
