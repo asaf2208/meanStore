@@ -1,49 +1,24 @@
 const express = require('express');
-const app = express();
+app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+
+
 io.set('origins', '*:*');
 
+http.listen(4000);
+
+app.set('socketio',io);
+
 const documents = {};
-
-io.on('connection', socket => {
-    let previousId;
-    const safeJoin = currentId => {
-        socket.leave(previousId);
-        socket.join(currentId, () => console.log(`Socket ${socket.id} joined room ${currentId}`));
-        previousId = currentId;
-    }
-
-    socket.on('getDoc', docId => {
-        safeJoin(docId);
-        socket.emit('document', documents[docId]);
-    });
-
-    socket.on('addDoc', doc => {
-        documents[doc.id] = doc;
-        safeJoin(doc.id);
-        io.emit('documents', Object.keys(documents));
-        socket.emit('document', doc);
-    });
-
-    socket.on('editDoc', doc => {
-        documents[doc.id] = doc;
-        socket.to(doc.id).emit('document', doc);
-    });
-
-    io.emit('documents', Object.keys(documents));
-
-    console.log(`Socket ${socket.id} has connected`);
-});
-
-
 
 const ProductRoutes = require('./api/routes/products');
 const BranchRoutes = require('./api/routes/branches');
 const OrderRoutes = require('./api/routes/orders');
 const UserRoutes = require('./api/routes/users');
+
 
 const cors = require('cors');// ********
 //const express = require('./api/routes/express');// ***
