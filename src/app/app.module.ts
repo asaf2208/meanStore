@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Globals } from './globals';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -17,6 +18,11 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { BranchComponent } from './branch/branch.component';
 import { DisplayUsdPipe } from './display-usd.pipe';
+import { AdminComponent } from './admin/admin.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material';
+
+import { AddProductComponent } from './products/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -34,11 +40,16 @@ import { DisplayUsdPipe } from './display-usd.pipe';
     LoginComponent,
     BranchComponent,
     DisplayUsdPipe,
+    AdminComponent,
+    AddProductComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
+    MatTableModule,
     ReactiveFormsModule,
+    MatDialogModule,
     HttpClientModule,
     RouterModule.forRoot([
       { 
@@ -66,10 +77,17 @@ import { DisplayUsdPipe } from './display-usd.pipe';
         component: LoginComponent
       },
       { 
+        path: 'admin',
+        component: AdminComponent
+      },
+      { 
         path: '**',
         component: NotFoundComponent
       }
     ])
+  ],
+  entryComponents: [
+    AddProductComponent
   ],
   providers: [Globals],
   bootstrap: [AppComponent]
