@@ -1,5 +1,13 @@
 h3 {
     margin: auto;
-    left: 40%;
+    left: 45%;
     position: absolute;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 200;
+    font: bold;
+    text-shadow: 3px 3px rgb(7, 226, 25);
+}
+
+body {
+    background-color: greenyellow;
 }

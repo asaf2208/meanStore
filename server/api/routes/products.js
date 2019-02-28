@@ -5,12 +5,13 @@ const mongoose = require('mongoose');
 
 const Product = require('../models/product');
 
+
 router.get('/:name',(req,res,next) => {
     Product.find({
         name:req.params.name
     }).then(foundproduct=>{
         res.status(200).json({
-            product:foundproduct
+            products:foundproduct
         });
     })
     .catch(err=> {
@@ -21,13 +22,14 @@ router.get('/:name',(req,res,next) => {
 
 router.get('/',(req,res,next) => {
     Product.find()
-        .select('name price _id').exec().then(docs=>{
+        .select('name price category _id').exec().then(docs=>{
         const response = {
             count : docs.length,
             products : docs.map(doc=>{
                 return{
                     name: doc.name,
                     price : doc.price,
+                    category: doc.category,
                     _id : doc.id,
                     url:{
                         request:{
@@ -46,14 +48,44 @@ router.get('/',(req,res,next) => {
         });
 });
 
+router.get('/search', async(req, res) => {
+    const productprice = req.query.price;
+    const productcategory = req.query.category;
+    const productname = req.query.name;
 
+    let fetchedProducts;
+    let query = {};
+
+    if(productname !=='')query["name"] = productname;
+    if(productprice !=='')query["price"] = productprice;
+    if(productcategory !=='')query["category"] = productcategory;
+
+    const productQuery = Product.find(query);
+
+    productQuery
+    .then(prodctResult=>{
+        fetchedProducts = prodctResult;
+        return Product.find(query).countDocuments();
+    }).then(count =>{
+        res.status(200).json({
+            message:"products fetched successfuly",
+            products:fetchedProducts,
+            totalprducts:count
+        });
+    }).catch(err=> {
+        console.log(err);
+        res.status(500).json({error:err});
+    });
+  });
+  
 
 
 router.post('/',(req,res,next) => {
     const product = new Product({
         _id : new mongoose.Types.ObjectId(),
         name: req.body.name,
-        price:req.body.price
+        price:req.body.price,
+        category:req.body.category
     });
     product.save().then(result =>{
         res.status(201).json({
@@ -61,6 +93,7 @@ router.post('/',(req,res,next) => {
             createdProduct: {
                 name: result.name,
                 price : result.price,
+                category: result.category,
                 _id : result.id,
                 request: {
                     type: 'GET',
@@ -130,7 +163,7 @@ router.delete('/:productID',(req,res,next) => {
             request: {
                 type:'POST',
                 url: 'http;//localhost:3000/products',
-                body:{name : 'String',price:'Number'}
+                body:{name : 'String',price:'Number', category: 'String'}
             }
         });
     })
@@ -140,14 +173,6 @@ router.delete('/:productID',(req,res,next) => {
         });
 });
 
-router.get('/search', async(req, res) => {
-    Product.find({})
-    const { minval, maxval, category } = req.query
-    const products = await Product.find({type: category, price: {$gte: parseInt(minval), $lte: parseInt(maxval)}})
-    return products !== [] 
-    ? res.json(okResult(products)) 
-    : res.json(errResult('no products'))
-  })
 
 
 module.exports = router;

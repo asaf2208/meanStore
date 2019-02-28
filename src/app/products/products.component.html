@@ -1,4 +1,9 @@
-<input type="text" [(ngModel)]="searchTerm">
-<button type="button" class="btn btn-default" (click)="search()">Search</button>
+<br><br><br>
+<h3>Products</h3>
+<br><br><br>
+<div style="margin-left: 1rem;">
+    <input type="text" [(ngModel)]="searchTerm">
+    <button type="button" class="btn btn-primary" (click)="search()" style="margin-left: 1rem;">Search</button>
+</div>
 <br>
 <app-product *ngFor='let product of products;' [name]='product.name' [price]='product.price' [category]='product.category'></app-product>
