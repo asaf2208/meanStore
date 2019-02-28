@@ -18,6 +18,8 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { BranchComponent } from './branch/branch.component';
 import { DisplayUsdPipe } from './display-usd.pipe';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -44,6 +46,9 @@ var AppModule = /** @class */ (function () {
                 FormsModule,
                 ReactiveFormsModule,
                 HttpClientModule,
+                MatTableModule,
+                MatDialogModule,
+                MaterialModule,
                 RouterModule.forRoot([
                     {
                         path: '',
