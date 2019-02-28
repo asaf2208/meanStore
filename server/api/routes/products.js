@@ -6,6 +6,39 @@ const mongoose = require('mongoose');
 const Product = require('../models/product');
 
 
+router.get('/search', async(req, res) => {
+    const productname = req.query.name;
+    const productprice = req.query.price;
+    const productcategory = req.query.category;
+
+    
+    let fetchedProducts;
+    let query = {};
+
+    if(productname !=='')query["name"] = productname;
+    if(productprice !=='')query["price"] = productprice;
+    if(productcategory !=='')query["category"] = productcategory;
+
+    const productQuery = Product.find(query);
+
+    console.log(query);
+
+    productQuery
+    .then(prodctResult=>{
+        fetchedProducts = prodctResult;
+        return Product.find(query).countDocuments();
+    }).then(count =>{
+        res.status(200).json({
+            message:"products fetched successfuly",
+            products:fetchedProducts,
+            totalprducts:count
+        });
+    }).catch(err=> {
+        console.log(err);
+        res.status(500).json({error:err});
+    });
+  });
+
 router.get('/:name',(req,res,next) => {
     Product.find({
         name:req.params.name
@@ -48,35 +81,6 @@ router.get('/',(req,res,next) => {
         });
 });
 
-router.get('/search', async(req, res) => {
-    const productprice = req.query.price;
-    const productcategory = req.query.category;
-    const productname = req.query.name;
-
-    let fetchedProducts;
-    let query = {};
-
-    if(productname !=='')query["name"] = productname;
-    if(productprice !=='')query["price"] = productprice;
-    if(productcategory !=='')query["category"] = productcategory;
-
-    const productQuery = Product.find(query);
-
-    productQuery
-    .then(prodctResult=>{
-        fetchedProducts = prodctResult;
-        return Product.find(query).countDocuments();
-    }).then(count =>{
-        res.status(200).json({
-            message:"products fetched successfuly",
-            products:fetchedProducts,
-            totalprducts:count
-        });
-    }).catch(err=> {
-        console.log(err);
-        res.status(500).json({error:err});
-    });
-  });
   
 
 
