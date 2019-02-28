@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Globals } from '../globals';
 import { HttpClient } from '@angular/common/http';
+const axios = require('axios');
 
 @Component({
   selector: 'app-login',
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
           this.globals.setUser(data._id,data.username,data.fullname,data.email,data.isAdmin);
           sessionStorage.setItem('user',JSON.stringify(this.globals.user));
           this.router.navigateByUrl("/products");
+          axios.post("http://localhost:3000/branches/incrementbranchView/"+ data.city);
         } else {
           console.warn('wrong credentials');
         }

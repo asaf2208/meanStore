@@ -22,4 +22,9 @@ describe('BranchesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  this.getEntiresCity(this.city).subscribe((data)=>{
+    this.num=data.count;
+    this.show =true;
+    });
 });
