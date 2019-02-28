@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-products',
@@ -18,12 +19,15 @@ export class ProductsComponent implements OnInit {
   searchTerm2: string;
 
 
-  constructor(private route: ActivatedRoute, private http: HttpClient,public dialog: MatDialog) { }
+  constructor(private socket: Socket,private route: ActivatedRoute, private http: HttpClient,public dialog: MatDialog) {
+    this.setSockets();
+  }
 
   ngOnInit() {
     this.http.get<any>('http://localhost:3000/products')
       .subscribe((data) => {
         this.products = data['products'];
+        console.log(this.products);
       });
   }
 
@@ -64,6 +68,21 @@ export class ProductsComponent implements OnInit {
       } else {
       }
       });
+  }
+
+  setSockets() {
+    this.socket.on('deleteProduct',(productID : any) => {
+      for (let index = 0; index < this.products.length; index++) {
+        console.log(this.products[index]);
+        if(productID == this.products[index]._id) {
+          this.products.splice(index,1);
+        }
+      }
+    });
+
+    this.socket.on('deleteProduct',(message) => {
+      console.log(message);
+    });
   }
 
 }
