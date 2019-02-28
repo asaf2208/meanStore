@@ -1,3 +1,4 @@
+import { AdminComponent } from './admin/admin.component';
 import { AddProductComponent } from './products/add-product/add-product.component';
 import { Globals } from './globals';
 import { BrowserModule } from '@angular/platform-browser';
@@ -47,7 +48,8 @@ const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCre
     DisplayUsdPipe,
     GooglemapsComponent,
     AddProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    AdminComponent
   ],
   imports: [
     BrowserAnimationsModule,
