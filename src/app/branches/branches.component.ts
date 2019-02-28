@@ -24,7 +24,7 @@ export class BranchesComponent implements OnInit {
   }
 
   search() {
-    this.http.get<any>('http://localhost:3000/branches/search?' + (this.searchName ? 'name=' + this.searchName : 'name=') + (this.searchCity ? 'city=' + this.searchCity : 'city=') + (this.searchStreet ? 'street=' + this.searchStreet : 'street='))
+    this.http.get<any>('http://localhost:3000/branches/search?' + (this.searchName ? 'name=' + this.searchName : 'name=') + (this.searchCity ? '&city=' + this.searchCity : '&city=') + (this.searchStreet ? '&street=' + this.searchStreet : '&street='))
       .subscribe((data) => {
         this.branches = data['branches'];
       });
