@@ -20,4 +20,8 @@ export class BranchesService {
    
     return this.http.get<{branches : any[]}>('http://localhost:3000/branches');
   }
+
+  getEntiresCity(city:string) {
+    return this.http.get<{ count : number  }>('http://localhost:3000/branche/postCounter/'+city);
+  }
 }
