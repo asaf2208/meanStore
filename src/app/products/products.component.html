@@ -2,9 +2,9 @@
 <h3>Products</h3>
 <br><br><br>
 <div style="margin-left: 1rem;">
-    <input type="text" [(ngModel)]="searchTerm">
-    <input type="text" [(ngModel)]="searchTerm1">
-    <input type="text" [(ngModel)]="searchTerm2">
+    <input type="text" [(ngModel)]="searchName" placeholder="By name">
+    <input type="text" [(ngModel)]="searchPrice" placeholder="By price">
+    <input type="text" [(ngModel)]="searchCategory" placeholder="By category">
     <button type="button" class="btn btn-primary" (click)="search()" style="margin-left: 1rem;">Search</button>
 </div>
 <br>

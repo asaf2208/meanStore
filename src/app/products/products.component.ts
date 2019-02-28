@@ -14,9 +14,9 @@ import { Socket } from 'ngx-socket-io';
 export class ProductsComponent implements OnInit {
 
   products = [];
-  searchTerm: string;
-  searchTerm1: string;
-  searchTerm2: string;
+  searchName: string;
+  searchPrice: string;
+  searchCategory: string;
 
 
   constructor(private socket: Socket,private route: ActivatedRoute, private http: HttpClient,public dialog: MatDialog) {
@@ -32,12 +32,11 @@ export class ProductsComponent implements OnInit {
   }
 
   search() {
-    let url = 'http://localhost:3000/products/search?name=' + this.searchTerm + '&price=' + this.searchTerm1 + '&category='+ this.searchTerm2;
-    console.log(url);
+    let url = 'http://localhost:3000/products/search?' + (this.searchName ? 'name=' + this.searchName : 'name=') + (this.searchPrice ? '&price=' + this.searchPrice : '&price=') + (this.searchCategory ? '&category='+ this.searchCategory : '&category=');
+    
     this.http.get<any>(url)
       .subscribe((data) => {
-        this.products = data['products'],
-        console.log(data);
+        this.products = data['products'];
       });
   }
 

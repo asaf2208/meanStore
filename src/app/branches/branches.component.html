@@ -2,7 +2,9 @@
 <h3>Branches</h3>
 <br><br><br>
 <div style="margin-left: 1rem;">
-    <input type="text" [(ngModel)]="searchTerm">
+    <input type="text" [(ngModel)]="searchName" placeholder="By name">
+    <input type="text" [(ngModel)]="searchCity" placeholder="By city">
+    <input type="text" [(ngModel)]="searchStreet" placeholder="By street">
     <button type="button" class="btn btn-primary" (click)="search()" style="margin-left: 1rem;">Search</button>
 </div>
 <br>
