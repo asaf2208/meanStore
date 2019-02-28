@@ -17,6 +17,8 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { BranchComponent } from './branch/branch.component';
 import { DisplayUsdPipe } from './display-usd.pipe';
+import { GooglemapsComponent } from './googlemaps/googlemaps.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -34,8 +36,12 @@ import { DisplayUsdPipe } from './display-usd.pipe';
     LoginComponent,
     BranchComponent,
     DisplayUsdPipe,
+    GooglemapsComponent
   ],
   imports: [
+    AgmCoreModule.forRoot({
+      apiKey:"AIzaSyAAXZyutzornngMjFPiS7c8F5J0W8hxjX4"
+     }),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

@@ -14,7 +14,7 @@ export class BranchesComponent implements OnInit {
   branches = [];
   searchTerm: string;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient ) { }
 
   ngOnInit() {
     this.http.get<any>('http://localhost:3000/branches')

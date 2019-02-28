@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-const BACKEND_URL = environment.apiUrl + '/auth/countries/';
+const BACKEND_URL = 'http://localhost:3000/branches/';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,11 +11,11 @@ export class CordinatesService {
 
   constructor(private http: HttpClient) {}
   
-  getCord(CountryName: string)
+  getCord(CityName: string)
   {
    
     return this.http.get<{
       location : {lat : string , lng : string}
-      }>(BACKEND_URL + CountryName);
+      }>(BACKEND_URL + "cord/"+ CityName);
   }
 }

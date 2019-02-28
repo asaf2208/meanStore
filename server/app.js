@@ -41,9 +41,9 @@ app.use((req,res,next) => {
         res.sendStatus(200);
     } else {
         console.log(`${req.ip} ${req.method} ${req.url}`);
-        next();
-    }
 
+    }
+    next();
     // const error = new Error('Not Found');
     // error.status(404);
     // next(error);

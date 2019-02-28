@@ -1,10 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const axios = require('axios');
 
 
 const Branch = require('../models/branch');
 
+router.get('/city',(req,res,next) => {
+    Branch.distinct('city').then(cities=>{
+        res.status(200).json({
+            cities:cities
+        });
+    })
+    .catch(err=> {
+        console.log(err);
+        res.status(500).json({error:err});
+    });
+});
 
 router.get('/:name',(req,res,next) => {
     Branch.find({
@@ -79,7 +91,17 @@ router.get('/search', async(req, res) => {
         res.status(500).json({error:err});
     });
   });
-  
+
+  router.get('/cord/:id',(req,res,next)=>{
+    var location = null
+    axios.get('https://maps.googleapis.com/maps/api/geocode/json?address='+req.params.id+"+Israel"+'&key=AIzaSyAAXZyutzornngMjFPiS7c8F5J0W8hxjX4').then(re => {
+      location = re.data.results[0].geometry.location;
+     return res.status(200).json({"location":location});
+
+    }).catch(error=>{console.log(error);});
+
+  });
+ 
 
 router.post('/',(req,res,next) => {
     const branch = new Branch({
