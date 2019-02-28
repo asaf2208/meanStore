@@ -19,6 +19,12 @@ import { BranchComponent } from './branch/branch.component';
 import { DisplayUsdPipe } from './display-usd.pipe';
 import { GooglemapsComponent } from './googlemaps/googlemaps.component';
 import { AgmCoreModule } from '@agm/core';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {withCredentials: false} };
+
 
 @NgModule({
   declarations: [
@@ -39,10 +45,13 @@ import { AgmCoreModule } from '@agm/core';
     GooglemapsComponent
   ],
   imports: [
+    SocketIoModule.forRoot(config),
     AgmCoreModule.forRoot({
       apiKey:"AIzaSyAAXZyutzornngMjFPiS7c8F5J0W8hxjX4"
      }),
     BrowserModule,
+    MatDialogModule,
+    MatTableModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
