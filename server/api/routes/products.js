@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
-
 const Product = require('../models/product');
-
 
 router.get('/search', async(req, res) => {
     const productname = req.query.name;
@@ -65,7 +62,7 @@ router.get('/:name',(req,res,next) => {
     });
 });
 */
-router.get('/',(req,res,next) => {
+router.get('/',(req,res,next) => { 
     Product.find()
         .select('name price category _id').exec().then(docs=>{
         const response = {
@@ -174,6 +171,8 @@ router.delete('/:productID',(req,res,next) => {
     const id = req.params.productID;
     Product.remove({_id:id})
         .exec().then(result=>{
+        const io = app.get('socketio');
+        io.emit('deleteProduct',id);    
         res.status(200).json({
             message:'Product deleted',
             request: {
