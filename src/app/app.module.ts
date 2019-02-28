@@ -1,3 +1,4 @@
+import { PiechartDirective } from './d3graph';
 import { AdminComponent } from './admin/admin.component';
 import { AddProductComponent } from './products/add-product/add-product.component';
 import { Globals } from './globals';
@@ -49,7 +50,8 @@ const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCre
     GooglemapsComponent,
     AddProductComponent,
     EditProductComponent,
-    AdminComponent
+    AdminComponent,
+    PiechartDirective
   ],
   imports: [
     BrowserAnimationsModule,
