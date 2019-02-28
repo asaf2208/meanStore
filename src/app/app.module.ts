@@ -19,6 +19,8 @@ import { BranchComponent } from './branch/branch.component';
 import { DisplayUsdPipe } from './display-usd.pipe';
 import { GooglemapsComponent } from './googlemaps/googlemaps.component';
 import { AgmCoreModule } from '@agm/core';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { AgmCoreModule } from '@agm/core';
       apiKey:"AIzaSyAAXZyutzornngMjFPiS7c8F5J0W8hxjX4"
      }),
     BrowserModule,
+    MatDialogModule,
+    MatTableModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
