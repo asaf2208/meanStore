@@ -23,7 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {withCredentials: false} };
+const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCredentials: false} };
 
 
 @NgModule({
