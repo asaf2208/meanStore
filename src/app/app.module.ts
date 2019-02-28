@@ -21,10 +21,13 @@ import { GooglemapsComponent } from './googlemaps/googlemaps.component';
 import { AgmCoreModule } from '@agm/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material';
+<<<<<<< HEAD
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {withCredentials: false} };
 
+=======
+>>>>>>> f19852c77a8ee83cdded5eff0dc5114ef3b5beda
 
 @NgModule({
   declarations: [

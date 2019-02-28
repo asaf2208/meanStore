@@ -54,6 +54,7 @@ export class SignupComponent implements OnInit {
           console.log(data);
           if(data.message === "Created user successfully") {
             this.globals.setUser(data.createdUser._id,data.createdUser.username,data.createdUser.fullname,data.createdUser.email,data.createdUser.isAdmin);
+            sessionStorage.setItem('user',JSON.stringify(this.globals.user));
             this.router.navigateByUrl("/products");
           }
       });

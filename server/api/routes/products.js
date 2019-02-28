@@ -39,6 +39,18 @@ router.get('/search', async(req, res) => {
     });
   });
 
+  router.get('/groupbycategory',(req,res,next) => {
+    Product.aggregate([
+      {"$group" : {_id:"$category", count:{$sum:1}}}
+  ]).then(docs=> {
+
+        return res.status(200).json({docs});
+    }).catch(err=> {
+        console.log(err);
+        res.status(500).json({error:err});
+    });
+  });
+/*
 router.get('/:name',(req,res,next) => {
     Product.find({
         name:req.params.name
@@ -52,7 +64,7 @@ router.get('/:name',(req,res,next) => {
         res.status(500).json({error:err});
     });
 });
-
+*/
 router.get('/',(req,res,next) => {
     Product.find()
         .select('name price category _id').exec().then(docs=>{

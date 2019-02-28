@@ -47,14 +47,6 @@ export class ProductsComponent implements OnInit {
       {
         if(result.flag == true)
           {
-          // this.configservice.addKey(result.value.parameter,result.value.value,result.value.type).subscribe(response => {
-          //   console.log('add key response : ',response);
-          //   if(response.errorCode == 0 ) {
-          //     this.products.push(1);
-          //   } else {
-          //     console.log('error Code : ',response.errorCode);
-          //   }
-          // });
           console.log(result);
           this.http.post<any>("http://localhost:3000/products",{
               "name": result.value.name.value,

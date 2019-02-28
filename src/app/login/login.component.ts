@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
         console.log(data);
         if(data && data.errorCode == 0) {
           this.globals.setUser(data._id,data.username,data.fullname,data.email,data.isAdmin);
+          sessionStorage.setItem('user',JSON.stringify(this.globals.user));
           this.router.navigateByUrl("/products");
         } else {
           console.warn('wrong credentials');

@@ -12,8 +12,18 @@ export class ProductComponent implements OnInit {
   @Input() name : string;
   @Input() price : string;
   @Input() category : string;
+  @Input() id : string;
+
 
   ngOnInit() {
+  }
+
+  editProduct() {
+    // call edit product with id
+  }
+
+  deleteProduct() {
+    // call delete product with product id to delete it
   }
 
 }
