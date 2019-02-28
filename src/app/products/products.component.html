@@ -9,3 +9,5 @@
 </div>
 <br>
 <app-product *ngFor='let product of products;' [name]='product.name' [price]='product.price' [category]='product.category'></app-product>
+
+<button class="add" (click)="addProduct()"><span>+</span></button>
