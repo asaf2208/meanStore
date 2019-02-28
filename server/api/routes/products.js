@@ -152,6 +152,15 @@ router.patch('/:productID',(req,res,next) => {
     }
     Product.update({_id:id},{$set : updateOpt})
         .select('name price _id').exec().then(result=>{
+        const newVal = {
+            "name" : updateOpt.name,
+            "price": updateOpt.price,
+            "category": updateOpt.category,
+            "id": id
+        }
+        console.log(newVal);
+        const io = app.get('socketio');
+        io.emit('editProduct',newVal);
         res.status(200).json({
             message:'Product updated',
             request: {
@@ -159,8 +168,7 @@ router.patch('/:productID',(req,res,next) => {
                 url: 'http;//localhost:3000/products' +id
             }
         });
-    })
-        .catch(err=> {
+    }).catch(err=> {
             console.log(err);
             res.status(500).json({error:err});
         });

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="au-header">
-    <h1 mat-dialog-title class="au-title">Add Product</h1>
+    <h1 mat-dialog-title class="au-title">Edit Product</h1>
   </div>
   <div mat-dialog-content class="au-content">
     <form [formGroup]="myForm" action="">
@@ -30,7 +30,7 @@
       </div>
       <br>
       <br>
-      <button [disabled]="myForm.invalid" class="btn btn-primary" (click)="onClose()">Add</button>
+      <button [disabled]="myForm.invalid" class="btn btn-primary" (click)="onClose()">Edit</button>
     </form>
   </div>
   <div mat-dialog-actions class="au-submit-area">

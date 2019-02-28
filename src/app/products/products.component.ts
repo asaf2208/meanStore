@@ -80,8 +80,17 @@ export class ProductsComponent implements OnInit {
       }
     });
 
-    this.socket.on('deleteProduct',(message) => {
-      console.log(message);
+    this.socket.on('editProduct',(result) => {
+      for (let index = 0; index < this.products.length; index++) {
+        console.log(this.products[index]);
+        if(result.id == this.products[index]._id) {
+          this.products[index] = {
+            "name" : result.name,
+            "price" : result.price,
+            "category" : result.category
+          };
+        }
+      }
     });
   }
 

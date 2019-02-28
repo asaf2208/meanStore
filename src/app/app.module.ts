@@ -24,6 +24,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { EditProductComponent } from './products/edit-product/edit-product.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCredentials: false} };
 
@@ -45,7 +46,8 @@ const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCre
     BranchComponent,
     DisplayUsdPipe,
     GooglemapsComponent,
-    AddProductComponent
+    AddProductComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -90,7 +92,7 @@ const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCre
       }
     ])
   ],
-  entryComponents: [AddProductComponent],
+  entryComponents: [AddProductComponent,EditProductComponent],
   providers: [Globals],
   bootstrap: [AppComponent]
 })
