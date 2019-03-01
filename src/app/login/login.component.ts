@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Globals } from '../globals';
 import { HttpClient } from '@angular/common/http';
+import axios from 'axios';
+// const axios = require('axios');
 
 @Component({
   selector: 'app-login',

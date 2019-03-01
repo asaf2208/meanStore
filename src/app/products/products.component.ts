@@ -27,7 +27,6 @@ export class ProductsComponent implements OnInit {
     this.http.get<any>('http://localhost:3000/products')
       .subscribe((data) => {
         this.products = data['products'];
-        console.log(this.products);
       });
   }
 
