@@ -43,8 +43,6 @@ router.post('/login', (req, res) => {
             console.error(err);
         } else if (user) {
             const { fullname, email, isAdmin, _id} = user;
-            console.log(isAdmin);
-            console.log(user);
             res.json(({
                 "errorCode": 0,
                 "_id": _id,
