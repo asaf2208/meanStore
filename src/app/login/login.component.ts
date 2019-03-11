@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         if(data && data.errorCode == 0) {
           this.globals.setUser(data._id,data.username,data.fullname,data.email,data.isAdmin);
           sessionStorage.setItem('user',JSON.stringify(this.globals.user));
-          this.router.navigateByUrl("/products");
+          this.router.navigateByUrl("/");
           axios.post("http://localhost:3000/branches/incrementbranchView/"+ data.city);
         } else {
           console.warn('wrong credentials');
