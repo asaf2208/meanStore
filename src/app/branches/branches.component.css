@@ -4,3 +4,19 @@ h3 {
     position: absolute;
     font-family: 'Times New Roman', Times, serif
 }
+
+.add {
+    position: fixed;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: green;
+    right: 2%;
+    bottom: 45%;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    display: table;
+    text-align: center;
+  }
+  

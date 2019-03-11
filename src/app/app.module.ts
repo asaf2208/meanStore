@@ -1,6 +1,7 @@
 import { PiechartDirective } from './d3graph';
 import { AdminComponent } from './admin/admin.component';
 import { AddProductComponent } from './products/add-product/add-product.component';
+import { AddBranchComponent } from './branches/add-branch/add-branch.component';
 import { Globals } from './globals';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -27,6 +28,8 @@ import { MatDialogModule } from '@angular/material';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { EditProductComponent } from './products/edit-product/edit-product.component';
+import { EditBranchComponent } from './branches/edit-branch/edit-branch.component';
+
 
 const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCredentials: false} };
 
@@ -50,6 +53,8 @@ const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCre
     GooglemapsComponent,
     AddProductComponent,
     EditProductComponent,
+    AddBranchComponent,
+    EditBranchComponent,
     AdminComponent,
     PiechartDirective
   ],
@@ -96,7 +101,7 @@ const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCre
       }
     ])
   ],
-  entryComponents: [AddProductComponent,EditProductComponent],
+  entryComponents: [AddProductComponent,EditProductComponent,AddBranchComponent,EditBranchComponent],
   providers: [Globals],
   bootstrap: [AppComponent]
 })

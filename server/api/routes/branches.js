@@ -73,6 +73,7 @@ router.get('/search', async(req, res) => {
     const branchcity = req.query.city;
     const branchname = req.query.name;
 
+
     let fetchedbranches;
     let query = {};
 
@@ -81,6 +82,8 @@ router.get('/search', async(req, res) => {
     if(branchstreet !=='')query["street"] = branchstreet;
 
     const branchQuery = Branch.find(query);
+
+    console.log(query);
 
     branchQuery
     .then(branchResult=>{
@@ -178,7 +181,16 @@ router.patch('/:branchID',(req,res,next) => {
         updateOpt[ops.propName] = ops.value;
     }
     Branch.update({_id:id},{$set : updateOpt})
-        .exec().then(result=>{
+    .select('name street city _id').exec().then(result=>{
+        const newVal = {
+            "name" : updateOpt.name,
+            "street": updateOpt.street,
+            "city": updateOpt.city,
+            "id": id
+        }
+        console.log(newVal);
+        const io = app.get('socketio');
+        io.emit('editBranch',newVal);
         res.status(200).json({
             message:'Branch updated',
             request: {
@@ -186,8 +198,7 @@ router.patch('/:branchID',(req,res,next) => {
                 url: 'http;//localhost:3000/branches' +id
             }
         });
-    })
-        .catch(err=> {
+    }).catch(err=> {
             console.log(err);
             res.status(500).json({error:err});
         });
@@ -198,6 +209,8 @@ router.delete('/:branchID',(req,res,next) => {
     const id = req.params.branchID;
     Branch.remove({_id:id})
         .exec().then(result=>{
+        const io = app.get('socketio');
+        io.emit('deleteBranch',id);    
         res.status(200).json({
             message:'branch deleted',
             request: {

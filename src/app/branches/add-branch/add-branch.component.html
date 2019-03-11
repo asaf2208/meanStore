@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="au-header">
+      <h1 mat-dialog-title class="au-title">Add Branch</h1>
+    </div>
+    <div mat-dialog-content class="au-content">
+      <form [formGroup]="myForm" action="">
+        <br> Name:
+        <br>
+        <!-- add required for the parameter input -->
+        <div class="form-group">
+          <input autocomplete="off" formControlName="name" type="text" name="Name">
+          <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+            <div *ngIf="name.errors.required">Name is required.</div>
+          </div>
+        </div>
+        <br> street:
+        <br>
+        <div class="form-group">
+          <input autocomplete="off" formControlName="street" type="text" name="Street">
+          <div *ngIf="street.touched && street.invalid" class="alert alert-danger">
+            <div *ngIf="street.errors.required">Street is required.</div>
+          </div>
+        </div>
+        <br> City:
+        <br>
+        <input autocomplete="off" formControlName="city" type="text" name="City">
+        <div *ngIf="city.touched && city.invalid" class="alert alert-danger">
+          <div *ngIf="city.errors.required">City is required.</div>
+        </div>
+        <br>
+        <br>
+        <button [disabled]="myForm.invalid" class="btn btn-primary" (click)="onClose()">Add</button>
+      </form>
+    </div>
+    <div mat-dialog-actions class="au-submit-area">
+    </div>
+  </div>

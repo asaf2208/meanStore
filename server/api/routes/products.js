@@ -136,7 +136,7 @@ router.patch('/:productID',(req,res,next) => {
         updateOpt[ops.propName] = ops.value;
     }
     Product.update({_id:id},{$set : updateOpt})
-        .select('name price _id').exec().then(result=>{
+        .select('name price category _id').exec().then(result=>{
         const newVal = {
             "name" : updateOpt.name,
             "price": updateOpt.price,
