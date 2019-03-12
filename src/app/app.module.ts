@@ -29,6 +29,8 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { EditProductComponent } from './products/edit-product/edit-product.component';
 import { EditBranchComponent } from './branches/edit-branch/edit-branch.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderComponent } from './order/order.component';
 
 
 
@@ -57,7 +59,9 @@ const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCre
     AddBranchComponent,
     EditBranchComponent,
     AdminComponent,
-    PiechartDirective
+    PiechartDirective,
+    OrdersComponent,
+    OrderComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -72,31 +76,35 @@ const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCre
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { 
+      {
         path: '',
         component: HomeComponent
       },
-      { 
+      {
         path: 'products',
         component: ProductsComponent
       },
-      { 
+      {
         path: 'branches',
         component: BranchesComponent
       },
-      { 
+      {
+        path: 'orders',
+        component: OrdersComponent
+      },
+      {
         path: 'about',
         component: AboutComponent
       },
-      { 
+      {
         path: 'signup',
         component: SignupComponent
       },
-      { 
+      {
         path: 'login',
         component: LoginComponent
       },
-      { 
+      {
         path: '**',
         component: NotFoundComponent
       }

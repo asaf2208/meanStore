@@ -1,19 +1,19 @@
 <html>
-<body>
-<ul class="active">
-    <div *ngIf="globals.user" class="name">Hello {{ globals.user.fullName | titlecase}} | <a style="cursor: pointer" (click)="logout()">Logout</a></div>
-</ul>
-<br>
-<ul>
-  <li><a class="active" routerLink="/">Home</a></li>
-  <li><span *ngIf="!globals.user"><a routerLink="/login">Login</a></span></li>
-  <li><span *ngIf="!globals.user"><a routerLink="/signup">Signup</a></span></li>
-  <li><a routerLink="/branches">Branches</a></li>
-  <li><a routerLink="/products">Products</a></li>
-  <li><a routerLink="/about">About</a></li>
-  <li><span *ngIf="globals.user && globals.user.isAdmin"><a routerLink="/admin">Admin dashboard</a></span></li>
-</ul>
-
-</body>
+  <body>
+    <ul class="active">
+      <div *ngIf="globals.user" class="name">Hello {{ globals.user.fullName | titlecase}} | <a style="cursor: pointer" (click)="logout()">Logout</a></div>
+    </ul>
+    <br>
+    <ul>
+      <li><a class="active" routerLink="/">Home</a></li>
+      <li><span *ngIf="!globals.user"><a routerLink="/login">Login</a></span></li>
+      <li><span *ngIf="!globals.user"><a routerLink="/signup">Signup</a></span></li>
+      <li><a routerLink="/branches">Branches</a></li>
+      <li><a routerLink="/products">Products</a></li>
+      <li><span *ngIf="globals && globals.user"><a routerLink="/orders">Orders</a></span></li>
+      <li><a routerLink="/about">About</a></li>
+      <li><span *ngIf="globals && globals.user && globals.user.isAdmin"><a routerLink="/admin">Admin dashboard</a></span></li>
+    </ul>
+  </body>
 </html>
       
