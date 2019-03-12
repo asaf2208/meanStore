@@ -16,9 +16,13 @@
     "cors": "^2.8.5",
     "count-min-sketch": "^0.1.1",
     "express": "^4.16.4",
+    "jsonframe-cheerio": "^3.0.1",
     "mongoose": "^5.4.15",
     "multer": "^1.4.1",
+    "node-fetch": "^2.3.0",
     "nodemon": "^1.18.10",
-    "socket.io": "^2.2.0"
+    "product-scraper": "^0.1.1",
+    "socket.io": "^2.2.0",
+    "twitter": "^1.7.1"
   }
 }
