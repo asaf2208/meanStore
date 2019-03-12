@@ -18,6 +18,8 @@ const ProductRoutes = require('./api/routes/products');
 const BranchRoutes = require('./api/routes/branches');
 const OrderRoutes = require('./api/routes/orders');
 const UserRoutes = require('./api/routes/users');
+const TwitterRoutes = require('./api/routes/twitter');
+
 
 
 const cors = require('cors');// ********
@@ -27,7 +29,6 @@ app.use(cors());
 app.options('*', cors());
 
 app.use(cors({credentials: true, origin: true})); // ***
-
 mongoose.connect("mongodb://localhost:27017/AppProject",{ useNewUrlParser: true }).then(() => {
      console.log('DB connected');
 }).catch(function(error) {
@@ -42,6 +43,7 @@ app.use('/products',ProductRoutes );
 app.use('/branches',BranchRoutes );
 app.use('/orders',OrderRoutes );
 app.use('/users',UserRoutes );
+app.use('/twitter',TwitterRoutes );
 
 app.use((req,res,next) => {
     res.header('Access-Control-Allow-Origin', '*');
