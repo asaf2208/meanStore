@@ -9,5 +9,5 @@
 </div>
 <br>
 <app-branch *ngFor='let branch of branches;' [id]='branch._id' [name]='branch.name' [street]='branch.street' [city]='branch.city'></app-branch>
-<button class="add" (click)="addBranch()"><span>+</span></button>
+<button *ngIf="globals.user && globals.user.isAdmin" class="add" (click)="addBranch()"><span>+</span></button>
 <app-googlemaps></app-googlemaps>

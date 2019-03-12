@@ -9,5 +9,4 @@
 </div>
 <br>
 <app-product *ngFor='let product of products;' [id]='product._id' [name]='product.name' [price]='product.price' [category]='product.category'></app-product>
-
-<button class="add" (click)="addProduct()"><span>+</span></button>
+<button *ngIf="globals.user && globals.user.isAdmin" class="add" (click)="addProduct()"><span>+</span></button>

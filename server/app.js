@@ -38,7 +38,6 @@ mongoose.Promise = global.Promise;
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-
 app.use('/products',ProductRoutes );
 app.use('/branches',BranchRoutes );
 app.use('/orders',OrderRoutes );

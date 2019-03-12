@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material';
 import { AddBranchComponent } from './add-branch/add-branch.component';
 import { Socket } from 'ngx-socket-io';
+import { Globals } from '../globals';
+
 
 @Component({
   selector: 'app-branches',
@@ -17,7 +19,7 @@ export class BranchesComponent implements OnInit {
   searchCity: string;
   searchStreet: string;
 
-  constructor(private socket: Socket, private route: ActivatedRoute, private http: HttpClient, public dialog: MatDialog ) 
+  constructor(private globals: Globals, private socket: Socket, private route: ActivatedRoute, private http: HttpClient, public dialog: MatDialog ) 
   {
       this.setSockets();
   }

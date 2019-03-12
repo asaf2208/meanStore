@@ -2,6 +2,8 @@ import { EditProductComponent } from './../products/edit-product/edit-product.co
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient,HttpParams  } from '@angular/common/http';
 import { MatDialog } from '@angular/material';
+import { Globals } from '../globals';
+
 
 @Component({
   selector: 'app-product',
@@ -10,7 +12,7 @@ import { MatDialog } from '@angular/material';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private http: HttpClient,public dialog: MatDialog) { }
+  constructor(private globals: Globals, private http: HttpClient,public dialog: MatDialog) { }
 
   @Input() name : string;
   @Input() price : string;

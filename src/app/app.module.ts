@@ -31,6 +31,7 @@ import { EditProductComponent } from './products/edit-product/edit-product.compo
 import { EditBranchComponent } from './branches/edit-branch/edit-branch.component';
 
 
+
 const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCredentials: false} };
 
 

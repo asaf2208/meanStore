@@ -1,5 +1,5 @@
 <div class="square">
     <h2>{{ name }} | {{ street }} {{ city }}</h2>
-    <button (click)="editBranch()">Edit</button>
-    <button (click)="deleteBranch()">Delete</button>
+    <button *ngIf="globals.user && globals.user.isAdmin" (click)="editBranch()">Edit</button>
+    <button *ngIf="globals.user && globals.user.isAdmin" (click)="deleteBranch()">Delete</button>
 </div>

@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { EditBranchComponent } from './../branches/edit-branch/edit-branch.component';
 import { HttpClient,HttpParams  } from '@angular/common/http';
 import { MatDialog } from '@angular/material';
+import { Globals } from '../globals';
+
 
 @Component({
   selector: 'app-branch',
@@ -10,7 +12,7 @@ import { MatDialog } from '@angular/material';
 })
 export class BranchComponent implements OnInit {
 
-  constructor(private http: HttpClient,public dialog: MatDialog) { }
+  constructor(private globals: Globals, private http: HttpClient,public dialog: MatDialog) { }
 
   @Input() name : string;
   @Input() street : string;

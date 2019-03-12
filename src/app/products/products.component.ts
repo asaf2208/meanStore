@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material';
 import { Socket } from 'ngx-socket-io';
+import { Globals } from '../globals';
+
 
 @Component({
   selector: 'app-products',
@@ -19,7 +21,7 @@ export class ProductsComponent implements OnInit {
   searchCategory: string;
 
 
-  constructor(private socket: Socket,private route: ActivatedRoute, private http: HttpClient,public dialog: MatDialog) {
+  constructor(private globals: Globals, private socket: Socket,private route: ActivatedRoute, private http: HttpClient,public dialog: MatDialog) {
     this.setSockets();
   }
 
