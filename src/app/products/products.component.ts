@@ -15,11 +15,11 @@ import { Globals } from '../globals';
 })
 export class ProductsComponent implements OnInit {
 
+  categories = [];
   products = [];
   searchName: string;
   searchPrice: string;
   searchCategory: string;
-
 
   constructor(private globals: Globals, private socket: Socket,private route: ActivatedRoute, private http: HttpClient,public dialog: MatDialog) {
     this.setSockets();
@@ -30,10 +30,27 @@ export class ProductsComponent implements OnInit {
       .subscribe((data) => {
         this.products = data['products'];
       });
+      this.http.get<any>('http://localhost:3000/products/groupbycategory')
+      .subscribe((data) => {
+        let sum = 0;
+
+        for (let i = 0; i < data.docs.length; i++) {
+          sum += data.docs[i].count;
+        }
+
+        this.categories.push({ _id: 'All', count: sum });
+        this.categories.push(...data['docs']);
+      });
   }
 
   search() {
-    let url = 'http://localhost:3000/products/search?' + (this.searchName ? 'name=' + this.searchName : 'name=') + (this.searchPrice ? '&price=' + this.searchPrice : '&price=') + (this.searchCategory ? '&category='+ this.searchCategory : '&category=');
+    let categoryToSearch = this.searchCategory;
+
+    if (this.searchCategory === 'All') {
+      categoryToSearch = '';
+    }
+
+    let url = 'http://localhost:3000/products/search?' + (this.searchName ? 'name=' + this.searchName : 'name=') + (this.searchPrice ? '&price=' + this.searchPrice : '&price=') + (categoryToSearch ? '&category='+ categoryToSearch : '&category=');
     
     this.http.get<any>(url)
       .subscribe((data) => {
