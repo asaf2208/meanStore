@@ -114,7 +114,7 @@ router.get('/:id',(req,res,next) => {
     Product.find().select('name price ').exec().then(docs=>{
         var matches = [];
       docs.forEach(product => {
-        var results = ac.search(product.name);
+        var results = ah.search(product.name);
         if (results.length > 0) {
           matches.push({product: product, matches: results});
         }
