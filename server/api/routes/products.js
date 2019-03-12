@@ -2,13 +2,15 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Product = require('../models/product');
+var AhoCorasick = require('ahocorasick');
+
 
 router.get('/search', async(req, res) => {
     const productname = req.query.name;
     const productprice = req.query.price;
     const productcategory = req.query.category;
 
-    
+
     let fetchedProducts;
     let query = {};
 
@@ -106,29 +108,21 @@ router.post('/',(req,res,next) => {
         });
 });
 
-/*
-router.get('/:productID',(req,res,next) => {
-    const id = req.params.productID;
-    Product.findById(id).select('name price _id').exec().then(doc=>{
-        console.log("From DB",doc);
-        if(doc) {
-            res.status(200).json({
-                product: doc,
-                request: {
-                    type:'GET',
-                    url: 'http;//localhost:3000/products'
-                }
-            });
-        }else{
-            res.status(404).json({message : 'No valid entry found for ID'});
+//////////////////////AhoCorasick//////////////////////////////
+router.get('/:id',(req,res,next) => {
+    var ah = new AhoCorasick([req.params.id]);
+    Product.find().select('name price ').exec().then(docs=>{
+        var matches = [];
+      docs.forEach(product => {
+        var results = ac.search(product.name);
+        if (results.length > 0) {
+          matches.push({product: product, matches: results});
         }
-    })
-        .catch(err=> {
-            console.log(err);
-            res.status(500).json({error:err});
-        });
+      });
+      return res.status(200).json({products: matches});
+    });
 });
-*/
+
 router.patch('/:productID',(req,res,next) => {
     const id = req.params.productID;
     const updateOpt = {};
