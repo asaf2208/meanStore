@@ -10,10 +10,9 @@
       <li><span *ngIf="!globals.user"><a routerLink="/signup">Signup</a></span></li>
       <li><a routerLink="/branches">Branches</a></li>
       <li><a routerLink="/products">Products</a></li>
-      <li><span *ngIf="globals && globals.user"><a routerLink="/orders">Orders</a></span></li>
+      <!-- <li><span *ngIf="globals && globals.user"><a routerLink="/orders">Orders</a></span></li> -->
       <li><a routerLink="/about">Tweets</a></li>
       <li><span *ngIf="globals && globals.user && globals.user.isAdmin"><a routerLink="/admin">Admin dashboard</a></span></li>
     </ul>
   </body>
 </html>
-      
