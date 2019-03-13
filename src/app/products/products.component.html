@@ -10,5 +10,7 @@
     <button type="button" class="btn btn-primary" (click)="search()" style="margin-left: 1rem;">Search</button>
 </div>
 <br>
-<app-product *ngFor='let product of products;' [id]='product._id' [name]='product.name' [price]='product.price' [category]='product.category'></app-product>
+<div class="flex-container">
+    <app-product *ngFor='let product of products;' [id]='product._id' [name]='product.name' [price]='product.price' [category]='product.category'></app-product>
+</div>
 <button *ngIf="globals.user && globals.user.isAdmin" class="add" (click)="addProduct()"><span>+</span></button>
