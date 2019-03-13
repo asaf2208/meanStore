@@ -32,16 +32,18 @@ export class ProductsComponent implements OnInit {
       });
       this.http.get<any>('http://localhost:3000/products/groupbycategory')
       .subscribe((data) => {
-        let sum = 0;
-
-        for (let i = 0; i < data.docs.length; i++) {
-          sum += data.docs[i].count;
-        }
+        let sum = this.sum(data.docs, 'count');
 
         this.categories.push({ _id: 'All', count: sum });
         this.categories.push(...data['docs']);
       });
   }
+
+  sum = function(items, prop){
+    return items.reduce( function(a, b){
+        return a + b[prop];
+    }, 0);
+  };
 
   search() {
     let categoryToSearch = this.searchCategory;
