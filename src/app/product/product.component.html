@@ -1,0 +1,5 @@
+<div class="square">
+  <h2>{{ name }} | {{ price | displayUsd }} | {{ category }}</h2>
+  <button *ngIf="globals.user && globals.user.isAdmin" (click)="editProduct()">Edit</button>
+  <button *ngIf="globals.user && globals.user.isAdmin" (click)="deleteProduct()">Delete</button>
+</div>

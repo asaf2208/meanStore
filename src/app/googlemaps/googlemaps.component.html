@@ -1,0 +1,10 @@
+<h1 class = "m-auto" >Branches City Google Maps:</h1>
+<agm-map #ngm [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                <agm-marker 
+                *ngFor="let m of markers; let i = index"
+                [latitude]="m.let"
+                [longitude]="m.lng">
+        </agm-marker>
+                
+             
+</agm-map>

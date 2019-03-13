@@ -1,0 +1,16 @@
+<br><br><br>
+<h3>Products</h3>
+<br><br><br>
+<div style="margin-left: 1rem;">
+    <input type="text" [(ngModel)]="searchName" placeholder="By name">
+    <input type="text" [(ngModel)]="searchPrice" placeholder="By price">
+    <select [(ngModel)]="searchCategory" (ngModelChange)="search()" style="width: 180px">
+        <option *ngFor="let c of categories" [ngValue]="c._id">{{ c._id }} ({{ c.count }})</option>
+    </select>
+    <button type="button" class="btn btn-primary" (click)="search()" style="margin-left: 1rem;">Search</button>
+</div>
+<br>
+<div class="flex-container">
+    <app-product *ngFor='let product of products;' [id]='product._id' [name]='product.name' [price]='product.price' [category]='product.category'></app-product>
+</div>
+<button *ngIf="globals.user && globals.user.isAdmin" class="add" (click)="addProduct()"><span>+</span></button>

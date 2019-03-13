@@ -1,0 +1,15 @@
+<br><br><br>
+<h3>Branches</h3>
+<br><br><br>
+<div style="margin-left: 1rem;">
+    <input type="text" [(ngModel)]="searchName" placeholder="By name">
+    <input type="text" [(ngModel)]="searchCity" placeholder="By city">
+    <input type="text" [(ngModel)]="searchStreet" placeholder="By street">
+    <button type="button" class="btn btn-primary" (click)="search()" style="margin-left: 1rem;">Search</button>
+</div>
+<br>
+<div class="flex-container">
+    <app-branch *ngFor='let branch of branches;' [id]='branch._id' [name]='branch.name' [street]='branch.street' [city]='branch.city'></app-branch>
+</div>
+<button *ngIf="globals.user && globals.user.isAdmin" class="add" (click)="addBranch()"><span>+</span></button>
+<app-googlemaps></app-googlemaps>

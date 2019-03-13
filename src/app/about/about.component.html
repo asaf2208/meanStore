@@ -1,0 +1,38 @@
+
+<form (submit)="onSearch(searchForm)" #searchForm="ngForm">
+  <mat-form-field>
+      <input matInput type="text" name="content" ngModel placeholder="content">
+      <mat-error></mat-error>
+  </mat-form-field>
+
+    <button mat-button color="primary" type="submit">filter</button>
+  <button mat-button type="button" (click)="onAllTweets()">all tweets</button>
+</form>
+
+
+
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf ="isFilter">
+  <div class="py-3 display-5"> Result for Sreach <span class="badge badge-dark"> {{filtertext}}</span> :</div> 
+</div>
+<mat-accordion multi="true" *ngIf="tweets.length > 0 && !isLoading">
+<mat-expansion-panel *ngFor="let tweet of tweets">
+  <mat-expansion-panel-header>
+      <div class="badge badge-dark m-2 p-2 active ">   {{tweet.created_by}}</div>
+      <div class="badge badge-dark  m-2 p-2 active ">   {{tweet.created_at}}</div>
+    
+   
+  </mat-expansion-panel-header>
+  
+  <h5 class="p-3"> {{tweet.text}}</h5>
+  <mat-accordion multi="true" *ngIf="tweet.filter.length > 0">
+    <div *ngFor="let f of tweet.filter">
+        <h5 class="py-auto"> The word <span class="badge badge-dark"> {{filtertext}}</span> in index <span class="badge badge-dark"> {{f}}</span> </h5> 
+    </div>
+  </mat-accordion>
+
+
+</mat-expansion-panel>
+</mat-accordion>
+<mat-paginator [length]="totalTweets" [pageSize]="tweetsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)" *ngIf="tweets.length > 0 && !isFilter"></mat-paginator>
+<p class="info-text mat-body-1" *ngIf="tweets.length <= 0 && !isLoading">Not Tweets found</p>

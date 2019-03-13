@@ -10,10 +10,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/socket.io": "^2.1.2",
+    "ahocorasick": "^1.0.2",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
+    "count-min-sketch": "^0.1.1",
     "express": "^4.16.4",
-    "mongoose": "^5.4.8",
-    "multer": "^1.4.1"
+    "jsonframe-cheerio": "^3.0.1",
+    "mongoose": "^5.4.15",
+    "multer": "^1.4.1",
+    "node-fetch": "^2.3.0",
+    "nodemon": "^1.18.10",
+    "product-scraper": "^0.1.1",
+    "socket.io": "^2.2.0",
+    "twitter": "^1.7.1"
   }
 }

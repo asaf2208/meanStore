@@ -1,0 +1,38 @@
+h3 {
+    margin: auto;
+    left: 46%;
+    position: absolute;
+    font-family: 'Times New Roman', Times, serif
+  }
+
+.add {
+  position: fixed;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: green;
+  right: 2%;
+  bottom: 5%;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  display: table;
+  text-align: center;
+}
+
+span {
+  font-size: 45px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}

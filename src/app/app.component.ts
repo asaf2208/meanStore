@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from './header/header.component';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
+import { Globals } from './globals';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-root',
@@ -9,20 +8,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private http: HttpClient) {}
-
-  private products;
-  private count;
-
-  ngOnInit() {
-    this.http.get<any>('http://localhost:3000/products')
-      .subscribe((data) => {
-        console.log(data);
-        this.products = data['products'];
-        console.log(this.products);
-      });
-    console.log(this.products);
+  constructor(private globals: Globals,private socket: Socket) {
+    if(sessionStorage.getItem('user') !== null) {
+      const user = JSON.parse(sessionStorage.getItem('user'));
+      console.log(user);
+      this.globals.setUser(user.id,user.userName,user.fullName,user.email,user.isAdmin);
+    }
   }
-
-  title = 'meanStore';
 }
