@@ -11,6 +11,7 @@
           <input autocomplete="off" formControlName="name" type="text" name="Name">
           <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
             <div *ngIf="name.errors.required">Name is required.</div>
+            <div *ngIf="name.errors.pattern">Name must contain letters only.</div>
           </div>
         </div>
         <br> street:
@@ -19,6 +20,7 @@
           <input autocomplete="off" formControlName="street" type="text" name="Street">
           <div *ngIf="street.touched && street.invalid" class="alert alert-danger">
             <div *ngIf="street.errors.required">Street is required.</div>
+            <div *ngIf="name.errors.pattern">Name must contain letters only.</div>
           </div>
         </div>
         <br> City:
@@ -26,6 +28,7 @@
         <input autocomplete="off" formControlName="city" type="text" name="City">
         <div *ngIf="city.touched && city.invalid" class="alert alert-danger">
           <div *ngIf="city.errors.required">City is required.</div>
+          <div *ngIf="name.errors.pattern">Name must contain letters only.</div>
         </div>
         <br>
         <br>
