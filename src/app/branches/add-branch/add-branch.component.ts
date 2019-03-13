@@ -14,9 +14,9 @@ export class AddBranchComponent implements OnInit {
   constructor(fb: FormBuilder,public dialogRef: MatDialogRef<AddBranchComponent>) {
     this.myForm = fb.group({
       // selectedOS: ['',Validators.required],
-      name: ['',[Validators.required, Validators.minLength(4), Validators.pattern(/^[a-zA-Z\s]*$/)]],
-      street: ['',[Validators.required, Validators.minLength(4), Validators.pattern(/^[a-zA-Z\s]*$/)]],
-      city: ['',[Validators.required, Validators.minLength(4), Validators.pattern(/^[a-zA-Z\s]*$/)]]
+      name: ['',[Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      street: ['',[Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      city: ['',[Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]]
     });
   }
 

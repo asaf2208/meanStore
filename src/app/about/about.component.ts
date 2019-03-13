@@ -84,7 +84,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   }
   onAllTweets() {
     this.isFilter = false;
-    this.tweetsService.getTweets(2, 1);
+    this.tweetsService.getTweets(10, 1);
   }
 
   ngOnDestroy() {
