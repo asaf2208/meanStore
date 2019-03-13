@@ -31,6 +31,10 @@ import { EditProductComponent } from './products/edit-product/edit-product.compo
 import { EditBranchComponent } from './branches/edit-branch/edit-branch.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderComponent } from './order/order.component';
+import { AngularMaterialModule } from './angular-material.module';
+
+
+
 
 
 
@@ -59,6 +63,7 @@ const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCre
     AddBranchComponent,
     EditBranchComponent,
     AdminComponent,
+    
     PiechartDirective,
     OrdersComponent,
     OrderComponent
@@ -75,6 +80,7 @@ const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCre
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularMaterialModule,
     RouterModule.forRoot([
       {
         path: '',
