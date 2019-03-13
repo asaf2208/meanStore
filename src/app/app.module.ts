@@ -32,6 +32,7 @@ import { EditBranchComponent } from './branches/edit-branch/edit-branch.componen
 import { OrdersComponent } from './orders/orders.component';
 import { OrderComponent } from './order/order.component';
 import { AngularMaterialModule } from './angular-material.module';
+import { TimesPipe } from './admin/timesPipe';
 
 
 
@@ -63,7 +64,7 @@ const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCre
     AddBranchComponent,
     EditBranchComponent,
     AdminComponent,
-    
+    TimesPipe,
     PiechartDirective,
     OrdersComponent,
     OrderComponent
@@ -109,6 +110,10 @@ const config: SocketIoConfig = { url: 'http://localhost:4000', options: {withCre
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: 'admin',
+        component: AdminComponent
       },
       {
         path: '**',

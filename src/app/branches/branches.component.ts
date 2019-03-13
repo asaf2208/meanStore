@@ -28,6 +28,12 @@ export class BranchesComponent implements OnInit {
     this.http.get<any>('http://localhost:3000/branches/')
       .subscribe((data) => {
         this.branches = data['branches'];
+        console.log(this.branches);
+        this.branches.forEach(branch => {
+          this.http.post("http://localhost:3000/branches/incrementbranchView/"+ branch._id,{}).subscribe(cmsResponse => {
+          console.log(cmsResponse);
+        });
+        });
       });
   }
 

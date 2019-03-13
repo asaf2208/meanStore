@@ -2,28 +2,8 @@ import { Globals } from './../globals';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {MatTableDataSource } from '@angular/material';
-
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
-
+import { HttpClient } from '@angular/common/http';
+import { TimesPipe } from './timesPipe';
 
 @Component({
   selector: 'app-admin',
@@ -31,10 +11,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  cmsValue: number = null;
 
-  constructor(private globals: Globals,private router: Router,  private route: ActivatedRoute) {
+  constructor(private globals: Globals,private router: Router,private http: HttpClient, private route: ActivatedRoute) {
     console.log(this.globals.user);
     if(this.globals.getUser() == null || this.globals.getUser().isAdmin == false) {
       console.log('false');
@@ -42,12 +21,22 @@ export class AdminComponent implements OnInit {
       console.log(this.globals.getUser().isAdmin);
       this.router.navigateByUrl('');
     } else {
-      console.log('true')
+      this.http.get<any>('http://localhost:3000/branches').subscribe(response => {
+        if(response && response.branches && response.branches.length > 0) {
+          console.log(response.branches[0]);
+          const id = response.branches[0]._id;
+          this.http.get<any>('http://localhost:3000/branches/postCounter/' + id).subscribe(newResponse => {
+            console.log(newResponse);
+            if(newResponse) {
+              this.cmsValue = Number(newResponse.count);
+            }
+          });
+        }
+      });
     }
   }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
   }
 
 }

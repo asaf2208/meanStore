@@ -1,4 +1,3 @@
-import { PeriodicElement } from './../admin/admin.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';

@@ -37,8 +37,8 @@ export class PiechartDirective implements OnInit {
   
   ngOnInit() {
    
-        this.initSvg();
-        this.drawPie();
+    this.initSvg();
+    this.drawPie();
     
     
 }

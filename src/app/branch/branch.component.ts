@@ -27,7 +27,6 @@ export class BranchComponent implements OnInit {
     let dialogRef = this.dialog.open(EditBranchComponent, {
       data: {
         name: this.name,
-        // selectedOS : this.data[index].os,
         street : this.street,
         city : this.city,
       },
