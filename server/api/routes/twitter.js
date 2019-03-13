@@ -11,7 +11,7 @@ var twitterClient = new Twitter({
     access_token_secret: 'BDrh5kSTQDHwANgTuL5rxhGGwqJ4loZthAtnXVanKGJlj'
   });
   
-  var params = {screen_name: 'adidas', count:100};
+  var params = {screen_name: 'Walmart', count:100};
   
   router.get('/tweet',(req, res, next) => {
     twitterClient.get('statuses/user_timeline', params, function (error, tweets, response) {
