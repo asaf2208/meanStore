@@ -63,8 +63,9 @@ export class PiechartDirective implements OnInit {
   }
 
   private drawPie() {
+      const check = [1,23,124,2534,543,534,5234];
       let g = this.svg.selectAll('.arc')
-          .data(this.pie(this.data))
+          .data(this.pie(check))
           .enter().append('g')
           .attr('class', 'arc');
       g.append('path').attr('d', this.arc)

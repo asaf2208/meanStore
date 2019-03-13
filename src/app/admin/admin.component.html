@@ -2,3 +2,5 @@
 <div *ngIf="cmsValue != null" style="text-align: center">
 Amount of time the branch was seen on the map is {{ cmsValue | TimesPipe }}
 </div>
+
+<svg appPiechart [data]="data"></svg>

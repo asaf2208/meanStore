@@ -12,9 +12,11 @@ import { TimesPipe } from './timesPipe';
 })
 export class AdminComponent implements OnInit {
   cmsValue: number = null;
+  data: any = null
 
   constructor(private globals: Globals,private router: Router,private http: HttpClient, private route: ActivatedRoute) {
     console.log(this.globals.user);
+    this.data = this.globals.user;
     if(this.globals.getUser() == null || this.globals.getUser().isAdmin == false) {
       console.log('false');
       console.log(this.globals.getUser());
