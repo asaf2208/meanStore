@@ -1,5 +1,4 @@
 # Node.js
-
 # Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
@@ -30,4 +29,13 @@ steps:
   inputs:
     cwd: './'
 
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: ""
+    scannerMode: 'CLI'
+    configMode: 'file'
 - task: SonarQubeAnalyze@4
+
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
