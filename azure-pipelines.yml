@@ -17,8 +17,11 @@ steps:
 
 
 - script: |
+    workingDirectory: './src'
     npm install
-    echo hello
+    npm run build
+    workingDirectory: '../server'
+    npm install
     npm run build
   displayName: 'npm install and build'
 
